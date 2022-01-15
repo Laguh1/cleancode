@@ -13,18 +13,15 @@ public class BookFilter {
         return booksToFilter.stream().filter(getFinalCondition(conditions)).collect(Collectors.toList());
     }
 
-    private  <T> Predicate<T> getFinalCondition (Predicate<T>... conditions) {
-        Predicate<T> finalCondition = input -> true;
+    private Predicate<Book> getFinalCondition (Predicate<Book>... conditions) {
+     /*   Predicate<Book> finalCondition = input -> true;
 
-        for (Predicate<T> condition: conditions){
+        for (Predicate<Book> condition: conditions){
             finalCondition = finalCondition.and(condition);
         }
-        return finalCondition;
+        return finalCondition;*/
 
-
-      /*
-        Predicate<T> finalCondition = Arrays.stream(conditions).reduce(input -> firstCondition(input), condition.andThen)
- return booksToFilter.stream().filter(conditions.and)*/
+        return Arrays.stream(conditions).reduce(input -> true, Predicate::and);
     }
 
     public class Book {

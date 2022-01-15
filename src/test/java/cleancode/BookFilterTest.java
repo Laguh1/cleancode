@@ -1,7 +1,5 @@
 package cleancode;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -15,13 +13,12 @@ class BookFilterTest {
     @Test
     public void returnOnlySmallBooksBeginningWithLetterA() {
 
-
-        List<BookFilter.Book> filteredBooks = bookFilter.filterBooks(createBookList(), book -> book.getName().charAt(0)=='A', book -> book.getPages() < 80);
+        List<BookFilter.Book> filteredBooks = bookFilter.filterBooks(createBookList(), book -> book.getName().charAt(0) == 'A', book -> book.getPages() < 80);
         List<BookFilter.Book> expectedResult = List.of(bookFilter.new Book("Andromeda", 50));
         assertEquals(expectedResult.get(0).getName(), filteredBooks.get(0).getName());
     }
 
-    private List<BookFilter.Book> createBookList(){
+    private List<BookFilter.Book> createBookList() {
         return List.of(bookFilter.new Book("Andromeda", 50),
                 bookFilter.new Book("Beauty", 100));
     }

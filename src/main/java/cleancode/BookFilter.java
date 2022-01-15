@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 
 public class BookFilter {
 
-    public  List<Book> filterBooks(List<Book> booksToFilter, Predicate<Book>... conditions){
+    public List<Book> filterBooks(List<Book> booksToFilter, Predicate<Book>... conditions) {
 
         return booksToFilter.stream().filter(getFinalCondition(conditions)).collect(Collectors.toList());
     }
 
-    private Predicate<Book> getFinalCondition (Predicate<Book>... conditions) {
+    private Predicate<Book> getFinalCondition(Predicate<Book>... conditions) {
      /*   Predicate<Book> finalCondition = input -> true;
 
         for (Predicate<Book> condition: conditions){
@@ -28,19 +28,43 @@ public class BookFilter {
         private String name;
         private int numberOfPages;
 
-        public Book(String name, int numberOfPages){
+        public Book(String name, int numberOfPages) {
             this.name = name;
             this.numberOfPages = numberOfPages;
         }
 
-        public String getName(){
+        public String getName() {
             return this.name;
         }
 
-        public int getPages(){
+        public int getPages() {
             return this.numberOfPages;
         }
     }
 
+    public enum Size {
+
+        SMALL(0, 100),
+
+        MEDIUM(101, 450),
+
+        BIG(451, 1000);
+
+        private int minimumNumberOfPages;
+        private int maximumNumberOfPages;
+
+        Size(int minPages, int maxPages) {
+            this.minimumNumberOfPages = minPages;
+            this.maximumNumberOfPages = maxPages;
+        }
+
+        public int getMinimumNumberOfPages() {
+            return minimumNumberOfPages;
+        }
+
+        public int getMaximumNumberOfPages(){
+            return maximumNumberOfPages;
+        }
+    }
 
 }

@@ -66,4 +66,13 @@ public class BookFilter {
         }
     }
 
+    public static class Filters {
+
+        public static final Predicate<Book> SMALL_BOOK = book -> book.getPages() < Size.SMALL.getMaximumNumberOfPages();
+
+        public static Predicate<Book> createAlphabetBook(String character) {
+            return book -> book.getName().startsWith(character);
+        }
+    }
+
 }
